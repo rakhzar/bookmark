@@ -1,0 +1,22 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div class="app">
+    <nav class="nav">Меню</nav>
+    <main>Контент</main>
+  </div>
+</template>
+
+<style scoped>
+.app {
+  display: flex;
+  min-height: calc(100vh - 140);
+  gap: 200px;
+  max-width: 1450px;
+  margin: 140px auto 0 auto;
+}
+
+.nav {
+  min-width: 400px;
+}
+</style>

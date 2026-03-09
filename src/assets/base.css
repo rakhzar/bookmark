@@ -1,0 +1,18 @@
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #1c1c1c;
+  --color-inactive: rgba(28, 28, 28, 0.4);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
