@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import ProfileAvatar from './components/ProfileAvatar.vue';
-import { API_ROUTES } from './api';
-import type { Profile } from './interfaces/profile.interface';
+import { useProfileStore } from './stores/profile.store';
+import TestProfile from './components/TestProfile.vue';
 
-const profile = ref<Profile>();
-
-async function fetchProfile() {
-  // Здесь будет логика для получения данных профиля
-  const data = await fetch(API_ROUTES.profile);
-  const res = (await data.json()) as Profile;
-  profile.value = res;
-}
+const store = useProfileStore();
 
 onMounted(() => {
-  fetchProfile();
+  store.fetchProfile();
 });
 </script>
 
 <template>
   <div class="app">
     <nav class="nav">
-      <ProfileAvatar v-if="profile" :name="profile?.name" />
+      <ProfileAvatar
+        v-if="store.profile"
+        :name="store.profile?.name"
+      />
     </nav>
-    <main>Контент</main>
+    <main>
+      Контент
+      <TestProfile />
+    </main>
   </div>
 </template>
 
