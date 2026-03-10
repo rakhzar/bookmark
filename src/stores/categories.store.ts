@@ -1,6 +1,5 @@
-import { API_ROUTES } from '@/api';
+import { API_ROUTES, http } from '@/api';
 import type { Category } from '@/interfaces/category.interface';
-import axios from 'axios';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
@@ -9,7 +8,7 @@ export const useCategoryStore = defineStore(
   () => {
     const categories = ref<Category[]>([]);
     async function fetchCategories() {
-      const { data } = await axios.get<Category[]>(
+      const { data } = await http.get<Category[]>(
         API_ROUTES.categories,
       );
       categories.value = data;
