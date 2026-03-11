@@ -3,13 +3,17 @@ import ButtonText from '@/components/ButtonText.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
+function redirectToMain() {
+  router.push({ name: 'main' });
+}
 </script>
 
 <template>
   <div class="auth">
     <div class="auth-form">
       <h1 class="auth__header">Bookmarkly</h1>
-      <ButtonText @click="router.push('/main')"
+      <ButtonText @click="redirectToMain()"
         >Вход
       </ButtonText>
     </div>
