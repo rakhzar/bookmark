@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted } from 'vue';
+import ButtonIcon from './ButtonIcon.vue';
+import IconPlus from '@/icons/IconPlus.vue';
+import { RouterLink, useRouter } from 'vue-router';
 
 const store = useCategoryStore();
+// const authStore = useAuthStore();
+const router = useRouter();
 
 onMounted(() => {
   store.fetchCategories();
@@ -16,7 +21,16 @@ onMounted(() => {
       v-for="item in store.categories"
       :key="item.id"
     >
-      <a :href="`/${item.alias}`">{{ item.name }}</a>
+      <RouterLink
+        active-class="active-link"
+        :to="`/main/${item.alias}`"
+        >{{ item.name }}</RouterLink
+      >
+    </li>
+    <li>
+      <ButtonIcon>
+        <IconPlus />
+      </ButtonIcon>
     </li>
   </ul>
 </template>
@@ -29,18 +43,20 @@ onMounted(() => {
   margin: 0;
   padding: 0;
 }
-
+.category-list li {
+  list-style: none;
+}
 .list-item {
   list-style: none;
 }
-
 .list-item a {
   text-decoration: none;
   transition: all 0.5s;
   color: var(--color-fg);
 }
 
-.list-item a:hover {
+.list-item a:hover,
+.list-item a.active-link {
   font-size: 24px;
   font-weight: 700;
 }
