@@ -3,17 +3,13 @@ import type { Category } from '@/interfaces/category.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useCategoryStore = defineStore(
-  'categories',
-  () => {
-    const categories = ref<Category[]>([]);
-    async function fetchCategories() {
-      const { data } = await http.get<Category[]>(
-        API_ROUTES.categories,
-      );
-      categories.value = data;
-    }
+export const useCategoryStore = defineStore('categories', () => {
+  const categories = ref<Category[]>([]);
 
-    return { categories, fetchCategories };
-  },
-);
+  async function fetchCategories() {
+    const { data } = await http.get<Category[]>(API_ROUTES.categories);
+    categories.value = data;
+  }
+
+  return { categories, fetchCategories };
+});
