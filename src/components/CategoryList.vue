@@ -3,11 +3,9 @@ import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted } from 'vue';
 import ButtonIcon from './ButtonIcon.vue';
 import IconPlus from '@/icons/IconPlus.vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 
 const store = useCategoryStore();
-// const authStore = useAuthStore();
-const router = useRouter();
 
 onMounted(() => {
   store.fetchCategories();
@@ -16,19 +14,13 @@ onMounted(() => {
 
 <template>
   <ul class="category-list">
-    <li
-      class="list-item"
-      v-for="item in store.categories"
-      :key="item.id"
-    >
-      <RouterLink
-        active-class="active-link"
-        :to="`/main/${item.alias}`"
-        >{{ item.name }}</RouterLink
-      >
+    <li class="list-item" v-for="item in store.categories" :key="item.id">
+      <RouterLink active-class="active-link" :to="`/main/${item.alias}`">{{
+        item.name
+      }}</RouterLink>
     </li>
     <li>
-      <ButtonIcon>
+      <ButtonIcon @click="store.createCategory">
         <IconPlus />
       </ButtonIcon>
     </li>
