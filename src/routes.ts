@@ -12,12 +12,12 @@ export const router = createRouter({
       children: [
         {
           path: '',
-          component: () => import('./components/TestComp.vue'),
+          component: () => import('./views/IndexView.vue'),
           name: 'main',
         },
         {
-          path: 'new',
-          component: () => import('./components/TestComp2.vue'),
+          path: ':alias',
+          component: () => import('./views/CategoryView.vue'),
         },
       ],
     },
