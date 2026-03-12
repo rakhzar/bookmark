@@ -11,11 +11,9 @@ function redirectToMain() {
 
 <template>
   <div class="auth">
-    <div class="auth-form">
+    <div class="auth__form">
       <h1 class="auth__header">Bookmarkly</h1>
-      <ButtonText @click="redirectToMain()"
-        >Вход
-      </ButtonText>
+      <ButtonText @click="redirectToMain()">Вход</ButtonText>
     </div>
   </div>
 </template>
@@ -32,7 +30,7 @@ function redirectToMain() {
   font-weight: 700;
 }
 
-.auth-form {
+.auth__form {
   display: flex;
   flex-direction: column;
   align-items: center;
