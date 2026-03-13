@@ -22,14 +22,17 @@ function onSubmit(event: Event) {
     <div class="auth__form">
       <h1 class="auth__header">Bookmarkly</h1>
       <form class="auth__form" @submit="onSubmit">
-        <InputString v-model="form.email" placeholder="Email" />
+        <InputString
+          v-model="form.email"
+          placeholder="Email"
+        />
         <InputString
           v-model="form.password"
           placeholder="Password"
           type="password"
         />
         <ButtonText type="submit">Вход</ButtonText>
-        {{ authStore.token }}
+        {{ authStore.getToken }}
       </form>
     </div>
   </div>
