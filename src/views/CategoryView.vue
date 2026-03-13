@@ -11,7 +11,9 @@ const bookmarkStore = useBookmarkStore();
 const category = ref<Category>();
 
 onMounted(() => {
-  category.value = categoryStore.getCategoryByAlias(route.params.alias);
+  category.value = categoryStore.getCategoryByAlias(
+    route.params.alias,
+  );
   if (category.value) {
     bookmarkStore.fetchBookmarks(category.value.id);
   }
@@ -23,7 +25,9 @@ watch(
     categories: categoryStore.categories,
   }),
   async (data) => {
-    category.value = categoryStore.getCategoryByAlias(data.alias);
+    category.value = categoryStore.getCategoryByAlias(
+      data.alias,
+    );
     if (category.value) {
       bookmarkStore.fetchBookmarks(category.value.id);
     }
