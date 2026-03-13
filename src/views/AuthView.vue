@@ -2,10 +2,21 @@
 import ButtonText from '@/components/ButtonText.vue';
 import InputString from '@/components/InputString.vue';
 import { useAuthStore } from '@/stores/auth.store';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
 const form = ref<{ email?: string; password?: string }>({});
 const authStore = useAuthStore();
+const router = useRouter();
+
+watch(
+  () => authStore.getToken,
+  () => {
+    if (authStore.getToken) {
+      router.push({ name: 'main' });
+    }
+  },
+);
 
 function onSubmit(event: Event) {
   event.preventDefault();
@@ -32,7 +43,6 @@ function onSubmit(event: Event) {
           type="password"
         />
         <ButtonText type="submit">Вход</ButtonText>
-        {{ authStore.getToken }}
       </form>
     </div>
   </div>
