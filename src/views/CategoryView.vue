@@ -11,11 +11,13 @@ const bookmarkStore = useBookmarkStore();
 const category = ref<Category>();
 
 onMounted(() => {
-  category.value = categoryStore.getCategoryByAlias(
-    route.params.alias,
-  );
-  if (category.value) {
-    bookmarkStore.fetchBookmarks(category.value.id);
+  const alias = route.params.alias;
+  if (alias) {
+    category.value =
+      categoryStore.getCategoryByAlias(alias);
+    if (category.value) {
+      bookmarkStore.fetchBookmarks(category.value.id);
+    }
   }
 });
 
@@ -25,11 +27,15 @@ watch(
     categories: categoryStore.categories,
   }),
   async (data) => {
-    category.value = categoryStore.getCategoryByAlias(
-      data.alias,
-    );
-    if (category.value) {
-      bookmarkStore.fetchBookmarks(category.value.id);
+    if (data.alias) {
+      category.value = categoryStore.getCategoryByAlias(
+        data.alias,
+      );
+      if (category.value) {
+        await bookmarkStore.fetchBookmarks(
+          category.value.id,
+        );
+      }
     }
   },
 );
