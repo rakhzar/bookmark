@@ -27,6 +27,21 @@ export const useCategoryStore = defineStore(
       categories.value.push(data);
     }
 
+    async function updateCategory(
+      name: string,
+      alias: string,
+      id: number,
+    ) {
+      await client().put<Category>(
+        API_ROUTES.categories + '/' + id,
+        {
+          name,
+          alias,
+        },
+      );
+      fetchCategories();
+    }
+
     function getCategoryByAlias(
       alias: string | string[],
     ): Category | undefined {
@@ -43,6 +58,7 @@ export const useCategoryStore = defineStore(
       fetchCategories,
       createCategory,
       getCategoryByAlias,
+      updateCategory,
     };
   },
 );
