@@ -3,15 +3,18 @@ import type { Bookmark } from '@/interfaces/bookmark.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useBookmarkStore = defineStore('bookmarks', () => {
-  const bookmarks = ref<Bookmark[]>([]);
+export const useBookmarkStore = defineStore(
+  'bookmarks',
+  () => {
+    const bookmarks = ref<Bookmark[]>([]);
 
-  async function fetchBookmarks(category_id: number) {
-    const { data } = await client().get<Bookmark[]>(
-      API_ROUTES.bookmarks(category_id),
-    );
-    bookmarks.value = data;
-  }
+    async function fetchBookmarks(category_id: number) {
+      const { data } = await client().get<Bookmark[]>(
+        API_ROUTES.bookmarks(category_id),
+      );
+      bookmarks.value = data;
+    }
 
-  return { bookmarks, fetchBookmarks };
-});
+    return { bookmarks, fetchBookmarks };
+  },
+);
