@@ -1,10 +1,19 @@
 import { API_ROUTES, client } from '@/api';
 import type { LoginResponse } from '@/interfaces/auth.interface';
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+
+const TOKEN_STORE_KEY = 'auth-store';
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref<string>();
+
+  function setToken(newToken: string) {
+    token.value = newToken;
+    localStorage.setItem(TOKEN_STORE_KEY, newToken);
+  }
+
+  const getToken = computed(() => token.value);
 
   async function login(email: string, password: string) {
     const { data } = await client().post<LoginResponse>(
@@ -14,8 +23,8 @@ export const useAuthStore = defineStore('auth', () => {
         password,
       },
     );
-    token.value = data.token;
+    setToken(data.token);
   }
 
-  return { token, login };
+  return { getToken, login, setToken };
 });
