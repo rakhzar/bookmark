@@ -4,7 +4,11 @@ import type { Bookmark } from '@/interfaces/bookmark.interface';
 import ButtonIconBig from './ButtonIconBig.vue';
 import IconLinkWhite from '@/icons/IconLinkWhite.vue';
 
-const { title, image } = defineProps<Bookmark>();
+const { title, image, url } = defineProps<Bookmark>();
+
+function openLink() {
+  window.open(url, '_blank');
+}
 </script>
 
 <template>
@@ -20,7 +24,7 @@ const { title, image } = defineProps<Bookmark>();
       <ButtonIconBig>
         <IconTrashWhite />
       </ButtonIconBig>
-      <ButtonIconBig>
+      <ButtonIconBig @click="openLink">
         <IconLinkWhite />
       </ButtonIconBig>
     </div>
