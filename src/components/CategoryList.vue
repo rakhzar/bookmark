@@ -33,7 +33,7 @@ function lagout() {
         >{{ item.name }}</RouterLink
       >
     </li>
-    <li>
+    <li class="list-item">
       <ButtonIcon @click="store.createCategory">
         <IconPlus />
       </ButtonIcon>
@@ -52,6 +52,11 @@ function lagout() {
   margin: 0;
   padding: 0;
 }
+
+.category-list li:first-child {
+  margin-bottom: -34px;
+}
+
 .category-list li {
   list-style: none;
 }
