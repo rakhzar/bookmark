@@ -30,7 +30,6 @@ const { title, image } = defineProps<Bookmark>();
 <style scoped>
 .bookmark-card {
   border-radius: 30px;
-  max-width: 400px;
   background: var(--color-fg);
   box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
   padding: 20px;
@@ -42,6 +41,7 @@ const { title, image } = defineProps<Bookmark>();
 .bookmark-card__image {
   min-height: 160px;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   border-radius: 20px;
 }
