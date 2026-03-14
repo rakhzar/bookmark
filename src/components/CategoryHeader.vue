@@ -33,13 +33,16 @@ function updateCategory() {
 <template>
   <div class="category-header">
     <h1 v-if="!isEdited">{{ category.name }}</h1>
-    <div v-if="isEdited">
-      <InputString v-model="newCategoryName" />
+    <div class="category-header__edit" v-if="isEdited">
+      <InputString
+        v-model="newCategoryName"
+        @keyup.enter="updateCategory"
+      />
       <ButtonIcon @click="updateCategory">
         <IconOK />
       </ButtonIcon>
     </div>
-    <div>
+    <div class="category-header__actions">
       <ButtonIcon v-if="!isEdited" @click="toggleEdit">
         <IconEdit />
       </ButtonIcon>
@@ -54,5 +57,11 @@ function updateCategory() {
 .category-header {
   display: flex;
   justify-content: space-between;
+}
+
+.category-header__actions,
+.category-header__edit {
+  display: flex;
+  gap: 8px;
 }
 </style>
