@@ -17,9 +17,6 @@ onMounted(() => {
   if (alias) {
     category.value =
       categoryStore.getCategoryByAlias(alias);
-    if (category.value) {
-      bookmarkStore.fetchBookmarks(category.value.id);
-    }
   }
 });
 
@@ -33,11 +30,6 @@ watch(
       category.value = categoryStore.getCategoryByAlias(
         data.alias,
       );
-      if (category.value) {
-        await bookmarkStore.fetchBookmarks(
-          category.value.id,
-        );
-      }
     }
   },
 );
