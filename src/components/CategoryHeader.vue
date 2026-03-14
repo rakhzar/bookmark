@@ -7,11 +7,13 @@ import InputString from './InputString.vue';
 import IconOK from '@/icons/IconOK.vue';
 import IconTrash from '@/icons/IconTrash.vue';
 import { useCategoryStore } from '@/stores/categories.store';
+import { useRouter } from 'vue-router';
 
 const { category } = defineProps<{ category: Category }>();
 const isEdited = ref<boolean>();
 const newCategoryName = ref<string>(category.name);
 const categoryStore = useCategoryStore();
+const router = useRouter();
 
 function toggleEdit() {
   isEdited.value = !isEdited.value;
@@ -27,6 +29,11 @@ function updateCategory() {
     category.id,
   );
   toggleEdit();
+}
+
+function deleteCategory() {
+  categoryStore.deleteCategory(category.id);
+  router.push({ name: 'main' });
 }
 </script>
 
@@ -46,7 +53,7 @@ function updateCategory() {
       <ButtonIcon v-if="!isEdited" @click="toggleEdit">
         <IconEdit />
       </ButtonIcon>
-      <ButtonIcon>
+      <ButtonIcon @click="deleteCategory">
         <IconTrash />
       </ButtonIcon>
     </div>
