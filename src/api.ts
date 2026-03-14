@@ -1,11 +1,6 @@
 import axios from 'axios';
 import { useAuthStore } from './stores/auth.store';
 
-export const http = axios.create({
-  baseURL: 'http://localhost:3000/api',
-  timeout: 10000,
-});
-
 export const API_ROUTES = {
   profile: `profile`,
   categories: `categories`,
