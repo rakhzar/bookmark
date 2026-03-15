@@ -8,6 +8,7 @@ import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
+import BookmarkAdd from '@/components/BookmarkAdd.vue';
 
 const route = useRoute();
 const categoryStore = useCategoryStore();
@@ -63,6 +64,10 @@ watch(
     @sort="sortBookmarks"
   />
   <div class="category-list">
+    <BookmarkAdd
+      v-if="category"
+      :category_id="category.id"
+    />
     <BookmarkCard
       v-for="item in sortedBookmarks"
       :key="item.id"
@@ -76,6 +81,7 @@ watch(
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 350px);
   gap: 24px;
 }
 </style>
