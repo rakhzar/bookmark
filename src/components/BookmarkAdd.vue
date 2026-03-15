@@ -40,6 +40,7 @@ function toggleIsEdited() {
       <InputString
         v-model="newUrl"
         @keyup.enter="addBookmark"
+        is-focused
       />
       <ButtonIcon @click="addBookmark">
         <IconOK />
