@@ -58,6 +58,17 @@ function openLink() {
   color: var(--color-bg);
   font-size: 16px;
   font-weight: 500;
+
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  line-height: 1.4;
+  height: calc(1.4em * 2);
 }
 
 .bookmark-card__footer {
