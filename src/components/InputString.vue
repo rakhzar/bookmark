@@ -12,7 +12,7 @@ const data = defineModel<string>();
   border-bottom: 1px solid var(--color-fg);
   font-size: 24px;
   color: var(--color-fg);
-  min-width: 274px;
+  width: 200px;
 }
 
 .input-string::placeholder {
