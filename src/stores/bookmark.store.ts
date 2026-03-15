@@ -52,14 +52,29 @@ export const useBookmarkStore = defineStore(
       url: string,
       category_id: number,
     ) {
-      const { data } = await client().post<Bookmark>(
-        API_ROUTES.bookmarks.create,
-        {
-          url,
-          category_id,
-        },
-      );
-      bookmarks.value.push(data);
+      try {
+        const { data } = await client().post<Bookmark>(
+          API_ROUTES.bookmarks.create,
+          {
+            url,
+            category_id,
+            title: url,
+            image: '',
+          },
+        );
+
+        bookmarks.value.push(data);
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(bookmarks.value),
+        );
+      } catch (error) {
+        console.error(
+          'Ошибка при создании закладки:',
+          error,
+        );
+      }
     }
 
     return {
