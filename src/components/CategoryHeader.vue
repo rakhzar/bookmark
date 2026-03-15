@@ -44,6 +44,7 @@ function deleteCategory() {
       <InputString
         v-model="newCategoryName"
         @keyup.enter="updateCategory"
+        is-focused
       />
       <ButtonIcon @click="updateCategory">
         <IconOK />
