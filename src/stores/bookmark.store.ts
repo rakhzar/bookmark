@@ -10,30 +10,7 @@ export const useBookmarkStore = defineStore(
   () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     const bookmarks = ref<Bookmark[]>(
-      saved
-        ? JSON.parse(saved)
-        : [
-            {
-              id: 2,
-              category_id: 2,
-              title:
-                'Github - gofiber/fiber: ⚡ Express inspired webframework written in Go',
-              url: 'https://gofiber.io/',
-              image:
-                'https://repository-images.githubusercontent.com/234231371/00fd8700-5430-11ea-820b-15fd85b2472c',
-              create_at: new Date('2025-01-01'),
-            },
-            {
-              id: 1,
-              category_id: 2,
-              title:
-                'PurpleSchoo - Обучающая платформа для старта карьеры в IT и роста | Антон Ларечев',
-              url: 'https://purpleschool.ru/',
-              image:
-                'https://habrastorage.org/getpro/moikrug/uploads/company/100/008/877/4/logo/big_ae43eaf1ccdde19716aff31009e04640.png',
-              create_at: new Date('2026-03-14'),
-            },
-          ],
+      saved ? JSON.parse(saved) : [],
     );
 
     const activeSort = ref<string>('date');
@@ -52,14 +29,20 @@ export const useBookmarkStore = defineStore(
       url: string,
       category_id: number,
     ) {
+      const domain = new URL(url).hostname;
+      const image = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+      const title = url
+        .replace(/^https?:\/\//, '')
+        .split('/')[0];
+
       try {
         const { data } = await client().post<Bookmark>(
           API_ROUTES.bookmarks.create,
           {
             url,
             category_id,
-            title: url,
-            image: '',
+            title,
+            image,
           },
         );
 
