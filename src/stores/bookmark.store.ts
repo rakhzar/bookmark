@@ -1,3 +1,4 @@
+import { API_ROUTES, client } from '@/api';
 import type { Bookmark } from '@/interfaces/bookmark.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
@@ -47,6 +48,25 @@ export const useBookmarkStore = defineStore(
       );
     }
 
-    return { bookmarks, deleteBookmark, activeSort };
+    async function addBookmark(
+      url: string,
+      category_id: number,
+    ) {
+      const { data } = await client().post<Bookmark>(
+        API_ROUTES.bookmarks.create,
+        {
+          url,
+          category_id,
+        },
+      );
+      bookmarks.value.push(data);
+    }
+
+    return {
+      bookmarks,
+      deleteBookmark,
+      activeSort,
+      addBookmark,
+    };
   },
 );
