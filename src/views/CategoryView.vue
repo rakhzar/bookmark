@@ -19,8 +19,15 @@ function sortBookmarks(sort: string) {
   bookmarkStore.activeSort = sort;
 }
 
+const bookmarksForCategory = computed(() => {
+  if (!category.value) return [];
+  return bookmarkStore.bookmarks.filter(
+    (b) => b.category_id === category.value?.id,
+  );
+});
+
 const sortedBookmarks = computed(() => {
-  const items = bookmarkStore.bookmarks;
+  const items = bookmarksForCategory.value;
   if (bookmarkStore.activeSort === 'date') {
     return [...items].sort(
       (a, b) =>
