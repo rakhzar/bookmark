@@ -1,48 +1,131 @@
-# bookmark-app
+# 🔖 Bookmarkly — менеджер закладок
 
-This template should help get you started developing with Vue 3 in Vite.
+Умное приложение для хранения и организации закладок по категориям.  
+Сделано на **Vue 3 + TypeScript + Pinia**. Данные хранятся локально в браузере.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 📸 Скриншоты
 
-## Recommended Browser Setup
+![Страница авторизации](./public/screenshots/auth.png)
+![Главная страница](./public/screenshots/main.png)
+![Страница категории](./public/screenshots/category.png)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Type Support for `.vue` Imports in TS
+## ✨ Возможности
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- ✅ **Авторизация** (вход/выход, защита роутов)
+- ✅ **Категории** (создание, редактирование, удаление)
+- ✅ **Закладки** (добавление, удаление, переход по ссылке)
+- ✅ **Сортировка** (по дате и по названию)
+- ✅ **Адаптивный интерфейс** (сетка из 3 колонок)
+- ✅ **404 страница** для несуществующих маршрутов
+- ✅ **Подтверждение удаления** (модальное окно)
+- ✅ **Анимации** (плавное появление попапа)
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 🔐 Тестовый доступ
 
-## Project Setup
+Для входа в приложение используйте:
 
-```sh
-bun install
+| Email    | Пароль |
+| -------- | ------ |
+| `a@a.ru` | `1`    |
+
+_Данные существуют только локально, для демонстрации._
+
+---
+
+## 🛠️ Стек технологий
+
+| Технология                  | Назначение          |
+| --------------------------- | ------------------- |
+| **Vue 3** (Composition API) | Фреймворк           |
+| **TypeScript**              | Типизация           |
+| **Pinia**                   | Хранилище состояния |
+| **Vue Router**              | Навигация           |
+| **Vite**                    | Сборка              |
+| **localStorage**            | Хранение данных     |
+
+---
+
+## 🚀 Установка и запуск
+
+### 1. Клонировать репозиторий
+
+```bash
+git clone https://github.com/rakhzar/bookmarkly.git
+cd bookmarkly
 ```
 
-### Compile and Hot-Reload for Development
+### 2. Установить зависимости
 
-```sh
-bun dev
+```bash
+npm install
+# или bun install
 ```
 
-### Type-Check, Compile and Minify for Production
+### 3. Запустить локальный бэкенд-сервер
 
-```sh
-bun run build
+В корне проекта находится файл **`bookmark-api-windows-amd64.exe`**.  
+Это готовый бэкенд на **Go (Fiber)**. Запустите его:
+
+```bash
+./bookmark-api-windows-amd64.exe
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+> 💡 Можно также запустить двойным кликом по файлу.
 
-```sh
-bun lint
+⚠️ **Важно:** Бэкенд должен быть запущен **до фронтенда**, иначе API не будет отвечать.
+
+### 4. Запустить фронтенд
+
+```bash
+npm run dev
+# или bun dev
 ```
+
+После этого приложение будет доступно по адресу:  
+🌐 **http://localhost:5173**
+
+### 5. Собрать для продакшна (опционально)
+
+```bash
+npm run build
+```
+
+Готовая сборка появится в папке **`/dist`**.
+
+---
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/      # Переиспользуемые компоненты
+├── views/           # Страницы (Auth, Category, Index)
+├── stores/          # Pinia store
+├── interfaces/      # TypeScript-интерфейсы
+├── icons/           # SVG-иконки
+├── api/             # Работа с API
+├── router/          # Настройки роутера
+├── App.vue          # Корневой компонент
+└── main.ts          # Точка входа
+```
+
+---
+
+## 👨‍💻 Автор
+
+**Коля (rakhzar)**
+
+- GitHub: [@rakhzar](https://github.com/rakhzar)
+- Проект: [bookmarkly](https://github.com/rakhzar/bookmarkly)
+
+---
+
+## 📝 Лицензия
+
+Проект учебный, лицензия не требуется.
