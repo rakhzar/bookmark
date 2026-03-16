@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import BookmarkCard from '@/components/BookmarkCard.vue';
 import BookmarkSort from '@/components/BookmarkSort.vue';
-import CategoryHeader from '@/components/CategoryHeader.vue';
+// import CategoryHeader from '@/components/CategoryHeader.vue';
 import type { Category } from '@/interfaces/category.interface';
 import { useBookmarkStore } from '@/stores/bookmark.store';
 import { useCategoryStore } from '@/stores/categories.store';
-import { onMounted, ref, watch } from 'vue';
+import {
+  defineAsyncComponent,
+  onMounted,
+  ref,
+  watch,
+} from 'vue';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 import BookmarkAdd from '@/components/BookmarkAdd.vue';
@@ -14,6 +19,10 @@ const route = useRoute();
 const categoryStore = useCategoryStore();
 const bookmarkStore = useBookmarkStore();
 const category = ref<Category>();
+
+const CategoryHeader = defineAsyncComponent(
+  () => import('@/components/CategoryHeader.vue'),
+);
 
 function sortBookmarks(sort: string) {
   bookmarkStore.activeSort = sort;
@@ -70,16 +79,18 @@ watch(
     :option="bookmarkStore.activeSort"
     @sort="sortBookmarks"
   />
-  <div class="category-list">
-    <BookmarkAdd
-      v-if="category"
-      :category_id="category.id"
-    />
-    <BookmarkCard
-      v-for="item in sortedBookmarks"
-      :key="item.id"
-      v-bind="item"
-    />
+  <div class="scroll-container">
+    <div class="category-list">
+      <BookmarkAdd
+        v-if="category"
+        :category_id="category.id"
+      />
+      <BookmarkCard
+        v-for="item in sortedBookmarks"
+        :key="item.id"
+        v-bind="item"
+      />
+    </div>
   </div>
 </template>
 
@@ -88,7 +99,12 @@ watch(
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(10, 350px);
   gap: 24px;
+}
+
+.scroll-container {
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 </style>
