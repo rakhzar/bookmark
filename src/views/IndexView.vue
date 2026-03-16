@@ -1,8 +1,11 @@
 <template>
   <div class="index">
-    <h1 class="index__header">Добро пожаловать в Bookmarkly</h1>
+    <h1 class="index__header">
+      Добро пожаловать в Bookmarkly
+    </h1>
     <p class="index__description">
-      Чтобы начать пользоваться выберите категорию закладок или создайте новую.
+      Чтобы начать пользоваться выберите категорию закладок
+      или создайте новую.
     </p>
   </div>
 </template>

@@ -33,7 +33,7 @@ function lagout() {
         >{{ item.name }}</RouterLink
       >
     </li>
-    <li class="list-item">
+    <li>
       <ButtonIcon @click="store.createCategory">
         <IconPlus />
       </ButtonIcon>

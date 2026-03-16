@@ -13,15 +13,19 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="popup__cover" v-if="isOpened">
-    <div class="popup">
-      {{ text }}
-      <div class="popup__actions">
-        <ButtonText @click="emit('ok')">Да</ButtonText>
-        <ButtonText @click="emit('cancel')">Нет</ButtonText>
+  <Teleport to="body">
+    <div class="popup__cover" v-if="isOpened">
+      <div class="popup">
+        {{ text }}
+        <div class="popup__actions">
+          <ButtonText @click="emit('ok')">Да</ButtonText>
+          <ButtonText @click="emit('cancel')"
+            >Нет</ButtonText
+          >
+        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style scoped>
