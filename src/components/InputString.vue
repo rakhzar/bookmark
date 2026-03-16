@@ -5,7 +5,7 @@ const data = defineModel<string>();
 const input = useTemplateRef<HTMLInputElement>('input');
 
 const { isFocused = false } = defineProps<{
-  isFocused: boolean;
+  isFocused?: boolean;
 }>();
 
 onMounted(() => {
