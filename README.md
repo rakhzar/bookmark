@@ -114,18 +114,3 @@ src/
 ├── App.vue          # Корневой компонент
 └── main.ts          # Точка входа
 ```
-
----
-
-## 👨‍💻 Автор
-
-**Коля (rakhzar)**
-
-- GitHub: [@rakhzar](https://github.com/rakhzar)
-- Проект: [bookmarkly](https://github.com/rakhzar/bookmarkly)
-
----
-
-## 📝 Лицензия
-
-Проект учебный, лицензия не требуется.
